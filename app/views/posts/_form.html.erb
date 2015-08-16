@@ -1,0 +1,6 @@
+<%= simple_form_for @post do |f| %>
+  <%= f.input :title, label: "Naslov" %>
+  <%= f.input :link, label: "Link" %>
+  <%= f.input :description, label: "Opis" %>
+  <%= f.submit 'Objavi' %>
+<% end %>
