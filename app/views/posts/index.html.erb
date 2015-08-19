@@ -2,6 +2,7 @@
   <p><%= link_to (image_tag post.image.url(:thumb)) %></p>
   <h2><%= link_to post.title, post %></h2>
   <p>Ukupno komentara: <%= post.comments.count %></p>
+  <p>Likes <%= post.get_likes.size %></p>
 <% end %>
 
 <%= link_to "Add New Inspiration", new_post_path %>
