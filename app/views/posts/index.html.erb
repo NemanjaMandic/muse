@@ -1,9 +1,48 @@
-<% @posts.each do |post| %>
-  <p><%= link_to (image_tag post.image.url(:thumb)) %></p>
-  <h2><%= link_to post.title, post %></h2>
-  <p>Ukupno komentara: <%= post.comments.count %></p>
-  <p>Likes <%= post.get_likes.size %></p>
-<% end %>
+<% if user_signed_in? %>
+  <p id="intro">
+    Hello <%= current_user.name %>
+     <br>
+     <span>Share your inspiration, and see whats inspiring others.</span>
+    </p>
 
-<%= link_to "Add New Inspiration", new_post_path %>
+  <% else %>
+  
+    <p id="intro">
+      What's your muse ?
+      <br>
+     <span>Share your inspiration, and see whats inspiring others.</span>
+    </p>
+  
+  <% end %>
+
+<div id="posts">
+  <% @posts.each do |post| %>
+  <div class="post">
+    <div class="post_image">
+       <%= link_to (image_tag post.image.url(:thumb)) %>
+    </div><!--END post_image-->
+    <div class="post_content">
+      <h2><%= link_to post.title, post %></h2>
+    </div><!--END "post_content-->
+    <div class="data clearfix">
+      <p class="username">
+        Shared by 
+        <%= post.user.name %>
+      </p>
+       <p class="buttons">
+         <span>
+           <i class="fa fa-comments-o"></i>
+           <%= post.comments.count %>
+         </span>
+         <span>
+           <i class="fa fa-thumbs-o-up"></i>
+             <%= post.get_likes.size %>
+         </span>
+       </p>
+    </div><!--END data clearfix-->
+  </div><!--END post-->
+<% end %>
+</div><!--END id="posts"-->
+
+
 
